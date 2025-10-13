@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>jQuery Script Tasks</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    p,
+    ul,
+    div {
+      margin: 10px 0;
+      padding: 10px;
+    }
+    p,
+    ul li {
+      color: #333;
+    }
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: #f4f4f4;
+    }
+    .special-style-1 {
+      font-family: 'Courier New', Courier, monospace;
+      color: red;
+    }
+    .special-style-2 {
+      font-family: Georgia, serif;
+      color: green;
+    }
+    .special-style-3 {
+      font-family: 'Arial Black', Gadget, sans-serif;
+      color: blue;
+    }
+    .special-style-4 {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: purple;
+    }
+    .special-style-5 {
+      font-family: 'Times New Roman', Times, serif;
+      color: orange;
+    }
+  </style>
+</head>
+<body>
+  <h2>Append Content</h2>
+  <p id="para">This is an existing paragraph.</p>
+  <ul id="list">
+    <li>Item 1</li>
+    <li>Item 2</li>
+  </ul>
+  <button id="appendBtn">Append Content</button>
+
+  <h2>Animate Element</h2>
+  <div class="box" id="animateBox"></div>
+  <button id="animateBtn">Animate Box</button>
+
+  <h2>Animate Element2</h2>
+  <div class="box" id="animatebox"></div>
+  <button id="animatebtn">Animate Box</button>
+
+  <script>
+    $(document).ready(function () {
+      let itemCount = $('#list li').length;
+
+      $('#appendBtn').click(() => {
+        itemCount++;
+
+        let styleClass = '';
+        if (itemCount <= 5) {
+          styleClass = 'special-style-' + itemCount;
+        }
+
+        if (styleClass) {
+          $('#para').append(
+            ` <span class="${styleClass}">Appended text ${itemCount}.</span>`
+          );
+        } else {
+          $('#para').append(` Appended text ${itemCount}.`);
+        }
+
+        if (styleClass) {
+          $('#list').append(
+            `<li class="${styleClass}">Item ${itemCount}</li>`
+          );
+        } else {
+          $('#list').append(`<li>Item ${itemCount}</li>`);
+        }
+      });
+
+      $('#animateBtn').click(() => {
+        $('#animateBox')
+          .css({ width: '100px', height: '100px', 'background-color': '#f4f4f4' })
+          .animate({ width: '150px', height: '150px' }, 500, function () {
+            $(this).css('background-color', 'lightblue');
+          });
+      });
+
+      $('#animatebtn').click(() => {
+        $('#animatebox')
+          .css({ width: '100px', height: '100px', 'background-color': '#f4f4f4' })
+          .animate({ width: '150px', height: '150px' }, 500, function () {
+            $(this).css('background-color', 'black');
+          });
+      });
+    });
+  </script>
+</body>
+</html>
